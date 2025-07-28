@@ -2,13 +2,26 @@ name: Auto-Commit
 on:
   schedule:
     - cron: '0 9 * * *'  # Se ejecuta a las 9 AM UTC
+  workflow_dispatch:     # 👈 ¡Esto activa la ejecución manual!
+
 jobs:
   update:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: echo "Hola, mundo" > hola.txt
-      - run: |
+        with:
+          fetch-depth: 0  # Necesario para permisos de Git
+
+      - name: Crear archivo
+        run: echo "Hola, mundo - $(date -u)" > hola.txt
+
+      - name: Configurar Git
+        run: |
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Hacer commit y push
+        run: |
           git add .
-          git commit -m "Auto-commit"
+          git commit -m "Auto-update: $(date -u)"
           git push
