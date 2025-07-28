@@ -1,0 +1,32 @@
+# Entorno virtual de Python
+venv/
+.env/
+EntornoVirtual/
+.EntornoVirtual/
+
+# Archivos de configuración sensible
+.env
+*.env
+config_secrets.json
+
+# Bytecode de Python
+__pycache__/
+*.py[cod]
+
+# Logs y databases
+*.log
+*.sqlite
+
+# IDE/Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Sistema operativo
+.DS_Store  (Mac)
+Thumbs.db  (Windows)
+
+# Archivos generados por el script (opcional, si no quieres trackearlos)
+/output/
+/temp/

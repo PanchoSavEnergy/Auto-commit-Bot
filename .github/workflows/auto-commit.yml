@@ -1,0 +1,14 @@
+name: Auto-Commit
+on:
+  schedule:
+    - cron: '0 9 * * *'  # Se ejecuta a las 9 AM UTC
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Hola, mundo" > hola.txt
+      - run: |
+          git add .
+          git commit -m "Auto-commit"
+          git push
